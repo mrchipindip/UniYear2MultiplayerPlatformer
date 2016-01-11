@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LadderClimb : MonoBehaviour {
+public class LadderClimbPlayer2 : MonoBehaviour
+{
 
     public float climbSpeed = 1.0f;
     private bool canClimb = false;
@@ -9,7 +10,7 @@ public class LadderClimb : MonoBehaviour {
     void OnCollisionEnter(Collision col)
     {
         Debug.Log("collision made");
-        if (col.gameObject.CompareTag("Ladder")) 
+        if (col.gameObject.CompareTag("Ladder"))
         {
             Debug.Log("its a ladder");
             canClimb = true;
@@ -19,26 +20,28 @@ public class LadderClimb : MonoBehaviour {
     void OnCollisionExit(Collision col)
     {
 
-        if (col.gameObject.CompareTag("Ladder")) 
+        if (col.gameObject.CompareTag("Ladder"))
         {
             Debug.Log("Called2");
             canClimb = false;
         }
     }
 
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	    if (canClimb == true)
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (canClimb == true)
         {
             Debug.Log("calledclimb");
-            float translation = Input.GetAxis("Vertical") * climbSpeed;
+            float translation = Input.GetAxis("Vertical2") * climbSpeed;
             transform.Translate(0, translation, 0);
         }
-	}
+    }
 
 
 }

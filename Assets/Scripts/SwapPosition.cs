@@ -13,9 +13,8 @@ public class SwapPosition : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if(Input.GetKey("e"))
+	    if(Input.GetKeyDown("e"))
         {
-            
             swap();
         }
 	}

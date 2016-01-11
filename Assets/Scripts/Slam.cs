@@ -43,7 +43,10 @@ public class Slam : MonoBehaviour {
         {
             if (Input.GetAxis("Fire2") != 0)
             {
-                SlamGround();
+                if (Input.GetAxis("Fire1") == 0)
+                {
+                    SlamGround();
+                }
             }
         }
 	}
