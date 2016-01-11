@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Slam : MonoBehaviour {
 
-
+    public GameObject thePlayer;
     public float rotateSpeed = 80.0f;
     public float slamHeight = 7.0f;
     private Vector3 previousRotaion;
@@ -37,6 +37,7 @@ public class Slam : MonoBehaviour {
             doRotate = false;
             rb.velocity = new Vector3(0.0f, -10.0f, 0.0f);
             onGround = true;
+            thePlayer.gameObject.SendMessage("SlammingChanged", true);
             resetRotation();
         }
         if (onGround == true)
@@ -45,7 +46,9 @@ public class Slam : MonoBehaviour {
             {
                 if (Input.GetAxis("Fire1") == 0)
                 {
+                    thePlayer.gameObject.SendMessage("SlammingChanged", true);
                     SlamGround();
+
                 }
             }
         }

@@ -29,10 +29,20 @@ public class Bullet : MonoBehaviour
             //Do Nothing
             //this is so it passes through triggers invisible to the player
         }
+        else if( col.gameObject.tag == "Button")
+        {
+            StartCoroutine(WaitFor());
+        }
         else
         {
             Destroy(gameObject);
         }
         
+    }
+
+    IEnumerator WaitFor()
+    {
+        yield return new WaitForSeconds(0.1f);
+        Destroy(gameObject);
     }
 }

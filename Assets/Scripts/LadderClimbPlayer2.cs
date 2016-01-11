@@ -4,7 +4,7 @@ using System.Collections;
 public class LadderClimbPlayer2 : MonoBehaviour
 {
 
-    public float climbSpeed = 1.0f;
+    public float climbSpeed = 0.3f;
     private bool canClimb = false;
 
     void OnCollisionEnter(Collision col)

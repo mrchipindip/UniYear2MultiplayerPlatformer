@@ -13,20 +13,21 @@ public class OnLadder : MonoBehaviour {
 	
 	}
 
-    void onTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider col)
     {
-        if (other.gameObject.tag == "Player")
+        if (col.gameObject.tag == "Player")
         {
-            Debug.Log("CAlledLADLASDLASDAS");
-            other.gameObject.SendMessage("OnLadder2", true);
+            col.gameObject.SendMessage("OnLadder2", true);
+
         }
     }
 
-    void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider col)
     {
-        if (other.gameObject.tag == "Player")
+        if (col.gameObject.tag == "Player")
         {
-            other.gameObject.SendMessage("OnLadder2", false);
+            col.gameObject.SendMessage("OnLadder2", false);
+
         }
     }
 }

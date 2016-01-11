@@ -10,6 +10,7 @@ public class Player2 : MonoBehaviour {
     public float healthAmount = 1.0f;
     public GameObject healthBar;
 
+    private bool isSlamming = false;
     private bool isFalling = false;
     private Rigidbody rb;
     private float translation = 0.0f;
@@ -21,19 +22,21 @@ public class Player2 : MonoBehaviour {
 
     void Update()
     {
-        
+
         // transform.position += transform.forward * Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
         //transform.position += transform.right * Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
-
-        if (Input.GetAxis("Horizontal2") > 0)
+        if (isSlamming == false)
         {
-            translation = Input.GetAxis("Horizontal2") * moveSpeed * -1;
-            transform.Translate(0, 0, translation);
-        }
-        else if(Input.GetAxis("Horizontal2") < 0)
-        {
-            translation = Input.GetAxis("Horizontal2") * moveSpeed;
-            transform.Translate(0, 0, translation);
+            if (Input.GetAxis("Horizontal2") > 0)
+            {
+                translation = Input.GetAxis("Horizontal2") * moveSpeed * -1;
+                transform.Translate(0, 0, translation);
+            }
+            else if (Input.GetAxis("Horizontal2") < 0)
+            {
+                translation = Input.GetAxis("Horizontal2") * moveSpeed;
+                transform.Translate(0, 0, translation);
+            }
         }
 
         //float translation = Input.GetAxis("Horizontal2") * moveSpeed * -1;
@@ -52,6 +55,21 @@ public class Player2 : MonoBehaviour {
         isFalling = true;
 
 
+    }
+
+    void SlammingChanged(bool changeState)
+    {
+        Debug.Log("MessageRecived Correctly");
+        if (isSlamming != true)
+        {
+            isSlamming = true;
+            Debug.Log("Slam Set to in prog");
+        }
+        else
+        {
+            isSlamming = false;
+            Debug.Log("reset value, freed mov");
+        }
     }
 
     void FixedUpdate()
