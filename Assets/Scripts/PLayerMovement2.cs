@@ -4,9 +4,10 @@ using System.Collections;
 public class PLayerMovement2 : MonoBehaviour {
 
     public float moveSpeed = 10.0f;
-    public float healthAmount = 10.0f;
+    public float healthAmount = 1.0f;
     public float lookSpeed = 4.0f;
     public double hitDist = 0.0;
+    public GameObject healthBar;
 
     private bool isFalling = false;
     private bool stayCheckOne = false;
@@ -78,6 +79,14 @@ public class PLayerMovement2 : MonoBehaviour {
     void TakeDamage(float damage)
     {
         healthAmount -= damage;
+        Debug.Log(healthAmount);
+
+        if (healthAmount > 1)
+        {
+            healthAmount = 1;
+        }
+
+        healthBar.transform.localScale = new Vector3(healthAmount, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
 
         if (healthAmount <= 0)
         {

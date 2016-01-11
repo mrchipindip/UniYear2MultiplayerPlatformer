@@ -6,25 +6,25 @@ public class LadderClimb : MonoBehaviour {
     public float climbSpeed = 1.0f;
     private bool canClimb = false;
 
-    void OnCollisionEnter(Collision col)
-    {
-        Debug.Log("collision made");
-        if (col.gameObject.CompareTag("Ladder")) 
-        {
-            Debug.Log("its a ladder");
-            canClimb = true;
-        }
-    }
+    //void OnCollisionEnter(Collision col)
+    //{
+    //    Debug.Log("collision made");
+    //    if (col.gameObject.CompareTag("Ladder")) 
+    //    {
+    //        Debug.Log("its a ladder");
+    //        canClimb = true;
+    //    }
+    //}
 
-    void OnCollisionExit(Collision col)
-    {
+    //void OnCollisionExit(Collision col)
+    //{
 
-        if (col.gameObject.CompareTag("Ladder")) 
-        {
-            Debug.Log("Called2");
-            canClimb = false;
-        }
-    }
+    //    if (col.gameObject.CompareTag("Ladder")) 
+    //    {
+    //        Debug.Log("Called2");
+    //        canClimb = false;
+    //    }
+    //}
 
     void Start () {
 	
@@ -39,6 +39,11 @@ public class LadderClimb : MonoBehaviour {
             transform.Translate(0, translation, 0);
         }
 	}
+
+    void OnLadder2(bool currentlyOnLadder)
+    {
+        canClimb = currentlyOnLadder;
+    }
 
 
 }

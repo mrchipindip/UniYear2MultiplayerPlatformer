@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            col.gameObject.SendMessage("TakeDamage", 2.0f);
+            col.gameObject.SendMessage("TakeDamage", 0.2f);
         }
         else if (col.gameObject.tag == "Trigger" || col.gameObject.tag == "StopTrigger")
         {

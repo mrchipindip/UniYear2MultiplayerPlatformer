@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SendTakeDamage : MonoBehaviour {
 
-    public float damageGiven = 2.0f;
+    public float damageGiven = 0.2f;
 
 
 	void Start () {

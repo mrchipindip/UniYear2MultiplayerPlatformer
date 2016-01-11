@@ -7,7 +7,8 @@ public class Player2 : MonoBehaviour {
     public float lookSpeed = 4.0f;
     public double hitDist = 0.0;
     public float jumpHeight = 8.0f;
-    public float healthAmount = 10.0f;
+    public float healthAmount = 1.0f;
+    public GameObject healthBar;
 
     private bool isFalling = false;
     private Rigidbody rb;
@@ -62,7 +63,7 @@ public class Player2 : MonoBehaviour {
                 transform.eulerAngles = new Vector3(0, -90, 0);
             }
         }
-        else if(Input.GetAxis("Horizontal2") < 0)
+        else if (Input.GetAxis("Horizontal2") < 0)
         {
             if (transform.rotation.eulerAngles.y != 90)
             {
@@ -80,7 +81,14 @@ public class Player2 : MonoBehaviour {
     {
         healthAmount -= damage;
 
-        if(healthAmount <= 0)
+        if (healthAmount > 1)
+        {
+            healthAmount = 1;
+        }
+
+        healthBar.transform.localScale = new Vector3(healthAmount, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
+
+        if (healthAmount <= 0)
         {
             Application.LoadLevel(Application.loadedLevel);
         }
