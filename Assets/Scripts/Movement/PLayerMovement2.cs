@@ -117,7 +117,7 @@ public class PLayerMovement2 : MonoBehaviour {
             if (transform.rotation.eulerAngles.y >= 89 && transform.rotation.eulerAngles.y <= 91)
             {
                 canMoveLeft = false;
-                Debug.Log("can move left changed");
+                //Debug.Log("can move left changed");
             }
             else
             {

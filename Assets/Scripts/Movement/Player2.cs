@@ -14,6 +14,10 @@ public class Player2 : MonoBehaviour {
     private bool isFalling = false;
     private Rigidbody rb;
     private float translation = 0.0f;
+
+    public bool againstObject = false;
+    private bool canMoveLeft = true;
+    private bool canMoveRight = true;
     // Use this for initialization
     void Start()
     {
@@ -27,12 +31,12 @@ public class Player2 : MonoBehaviour {
         //transform.position += transform.right * Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
         if (isSlamming == false)
         {
-            if (Input.GetAxis("Horizontal2") > 0)
+            if (Input.GetAxis("Horizontal2") > 0 && canMoveRight == true)
             {
                 translation = Input.GetAxis("Horizontal2") * moveSpeed * -1;
                 transform.Translate(0, 0, translation);
             }
-            else if (Input.GetAxis("Horizontal2") < 0)
+            else if (Input.GetAxis("Horizontal2") < 0 && canMoveLeft == true)
             {
                 translation = Input.GetAxis("Horizontal2") * moveSpeed;
                 transform.Translate(0, 0, translation);
@@ -74,6 +78,8 @@ public class Player2 : MonoBehaviour {
 
     void FixedUpdate()
     {
+        CheckIfAgainstObject();
+
         if (Input.GetAxis("Horizontal2") > 0)
         {
             if (transform.rotation.eulerAngles.y != -90)
@@ -109,6 +115,30 @@ public class Player2 : MonoBehaviour {
         if (healthAmount <= 0)
         {
             Application.LoadLevel(Application.loadedLevel);
+        }
+    }
+
+    void CheckIfAgainstObject()
+    {
+        if (againstObject == true)
+        {
+            //Debug.Log("Is against an object");
+
+            if (transform.rotation.eulerAngles.y >= 89 && transform.rotation.eulerAngles.y <= 91)
+            {
+                canMoveLeft = false;
+                //Debug.Log("can move left changed");
+            }
+            else
+            {
+                canMoveRight = false;
+                // Debug.Log("can move right changed");
+            }
+        }
+        else
+        {
+            canMoveLeft = true;
+            canMoveRight = true;
         }
     }
 
