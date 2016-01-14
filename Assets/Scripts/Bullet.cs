@@ -8,6 +8,8 @@ public class Bullet : MonoBehaviour
     private Rigidbody bulletRigidbody;
     private Transform bulletTransform;
 
+    private ButtonSendDestroy callADestroy;
+
 	// Use this for initialization
 	void Start () 
     {
@@ -23,6 +25,7 @@ public class Bullet : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             col.gameObject.SendMessage("TakeDamage", 0.2f);
+            Destroy(gameObject);
         }
         else if (col.gameObject.tag == "Trigger" || col.gameObject.tag == "StopTrigger")
         {
@@ -31,7 +34,9 @@ public class Bullet : MonoBehaviour
         }
         else if( col.gameObject.tag == "Button")
         {
-            StartCoroutine(WaitFor());
+            callADestroy = col.GetComponent<ButtonSendDestroy>();
+            callADestroy.RunDestroy();
+            Destroy(gameObject);
         }
         else
         {
@@ -42,7 +47,7 @@ public class Bullet : MonoBehaviour
 
     IEnumerator WaitFor()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
 }

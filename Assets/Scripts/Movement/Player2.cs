@@ -80,18 +80,21 @@ public class Player2 : MonoBehaviour {
     {
         CheckIfAgainstObject();
 
-        if (Input.GetAxis("Horizontal2") > 0)
+        if (isSlamming == false)
         {
-            if (transform.rotation.eulerAngles.y != -90)
+            if (Input.GetAxis("Horizontal2") > 0)
             {
-                transform.eulerAngles = new Vector3(0, -90, 0);
+                if (transform.rotation.eulerAngles.y != -90)
+                {
+                    transform.eulerAngles = new Vector3(0, -90, 0);
+                }
             }
-        }
-        else if (Input.GetAxis("Horizontal2") < 0)
-        {
-            if (transform.rotation.eulerAngles.y != 90)
+            else if (Input.GetAxis("Horizontal2") < 0)
             {
-                transform.eulerAngles = new Vector3(0, 90, 0);
+                if (transform.rotation.eulerAngles.y != 90)
+                {
+                    transform.eulerAngles = new Vector3(0, 90, 0);
+                }
             }
         }
     }

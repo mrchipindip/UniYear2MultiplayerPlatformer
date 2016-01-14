@@ -21,7 +21,7 @@ public class ButtonSendDestroy : MonoBehaviour {
 	
 	}
 
-    void RunDestroy()
+    public void RunDestroy()
     {
         Debug.Log("Destroy Run");
         Destroy(toBeDestroyed);
@@ -41,6 +41,7 @@ public class ButtonSendDestroy : MonoBehaviour {
         {
             Destroy(toBeDestroyed5);
         }
+       buttonChild.SetActive(false);
     }
 
     void OnCollisionEnter(Collision col)
@@ -49,7 +50,7 @@ public class ButtonSendDestroy : MonoBehaviour {
         if (col.gameObject.tag == "Slamming")
         {
             Debug.Log("CalledCollison");
-            buttonChild.SetActive(false);
+            
             RunDestroy();
         }
 
@@ -63,6 +64,8 @@ public class ButtonSendDestroy : MonoBehaviour {
 
 	void OnTriggerEnter(Collision col)
 	{
+        Debug.Log("DetectedTrigger");
+
 		if(col.gameObject.tag == "Bullet" && buttonActive == true)
 		{
 			buttonChild.SetActive(false);
