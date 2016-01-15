@@ -18,9 +18,17 @@ public class MovementRestrictionPlayer2 : MonoBehaviour {
 
     }
 
-    void OnTriggerEnter()
+    void OnTriggerEnter(Collider col)
     {
-        playerMovement.againstObject = true;
+        if (col.gameObject.tag != "Trigger" && col.gameObject.tag != "StopTrigger")
+        {
+            playerMovement.againstObject = true;
+        }
+        else
+        {
+            
+        }
+
     }
 
     void OnTriggerExit()
