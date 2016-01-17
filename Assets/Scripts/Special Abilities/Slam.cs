@@ -59,6 +59,8 @@ public class Slam : MonoBehaviour {
         previousRotaion = new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
         Rigidbody rb;
         rb = GetComponent<Rigidbody>();
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
         rb.velocity = new Vector3(0.0f, slamHeight, 0.0f);
         onGround = false;
 

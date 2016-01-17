@@ -3,7 +3,7 @@ using System.Collections;
 
 public class LevelFinished : MonoBehaviour {
 
-    public string nextLevel = "";
+    public int nextLevel;
     private int numPlayersAtFinish = 0;
 	// Use this for initialization
 	void Start () {

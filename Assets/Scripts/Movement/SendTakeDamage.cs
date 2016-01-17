@@ -17,8 +17,11 @@ public class SendTakeDamage : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
+        Debug.Log("CollisionMadeDetected");
+        Debug.Log(col.gameObject.tag);
         if (col.gameObject.tag == "Player")
         {
+            Debug.Log("Message was sent");
             col.gameObject.SendMessage("TakeDamage", damageGiven);
         }
     }
