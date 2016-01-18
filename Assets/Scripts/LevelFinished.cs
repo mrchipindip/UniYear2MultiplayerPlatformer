@@ -20,9 +20,10 @@ public class LevelFinished : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
+        Debug.Log("Booty");
         if (col.gameObject.tag == "Player")
         {
-            numPlayersAtFinish += 1;
+            Application.LoadLevel(nextLevel);
         }
     }
 
