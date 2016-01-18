@@ -15,8 +15,10 @@ public class OnLadder : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
+        //Check if the Object that is colliding with it is the player
         if (col.gameObject.tag == "Player")
         {
+            //Send Message to the colliding player object that calls a method allowing the player to climb
             col.gameObject.SendMessage("OnLadder2", true);
 
         }
@@ -26,6 +28,7 @@ public class OnLadder : MonoBehaviour {
     {
         if (col.gameObject.tag == "Player")
         {
+            //if teh playre leaves the ladder send new message telling its movement script 
             col.gameObject.SendMessage("OnLadder2", false);
 
         }

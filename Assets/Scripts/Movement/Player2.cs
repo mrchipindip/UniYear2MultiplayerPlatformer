@@ -27,12 +27,13 @@ public class Player2 : MonoBehaviour {
     void Update()
     {
 
-        // transform.position += transform.forward * Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
-        //transform.position += transform.right * Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
+        //Check if the player is currently in a slam (prevents him from moving while using "Slam"
         if (isSlamming == false)
         {
+            //Check if it is getting an axis input from the user & check If the player is allowed to move in that direction
             if (Input.GetAxis("Horizontal2") > 0 && canMoveRight == true)
             {
+                //Move The player using the input from the controller
                 translation = Input.GetAxis("Horizontal2") * moveSpeed * -1;
                 transform.Translate(0, 0, translation);
             }
@@ -43,24 +44,19 @@ public class Player2 : MonoBehaviour {
             }
         }
 
-        //float translation = Input.GetAxis("Horizontal2") * moveSpeed * -1;
-        //transform.Translate(0, 0, translation);
-        //transform.position += transform.forward * Input.GetAxis("Vertical2") * moveSpeed * Time.deltaTime;
-        //transform.position += transform.right * Input.GetAxis("Horizontal2") * moveSpeed * Time.deltaTime;
-
-        //jumping
+        //if the input for jump is given and the player is not already jumping
         if (Input.GetAxis("Fire1") != 0 && isFalling == false)
         {
+            //if not jumping, Jump the value of JumpHeight
             rb.velocity = new Vector3(0, jumpHeight, 0);
-
-            //    transform.Translate(Vector3.up * jumpSpeed * Time.deltaTime);
         }
-
+        //Reset the value of isFalling
         isFalling = true;
 
 
     }
 
+    //method that changes the value of slamming, talked to by the Slam script
     void SlammingChanged(bool changeState)
     {
         Debug.Log("MessageRecived Correctly");
@@ -78,21 +74,28 @@ public class Player2 : MonoBehaviour {
 
     void FixedUpdate()
     {
+        //Check if the player is against an object
         CheckIfAgainstObject();
-
+        //if not currently slamming
         if (isSlamming == false)
         {
+            //if moving left 
             if (Input.GetAxis("Horizontal2") > 0)
             {
+                //If not already facing left
                 if (transform.rotation.eulerAngles.y != -90)
                 {
+                    //face left
                     transform.eulerAngles = new Vector3(0, -90, 0);
                 }
             }
+                //if moving right
             else if (Input.GetAxis("Horizontal2") < 0)
             {
+                //if not already facing right
                 if (transform.rotation.eulerAngles.y != 90)
                 {
+                    //face right
                     transform.eulerAngles = new Vector3(0, 90, 0);
                 }
             }
@@ -101,45 +104,50 @@ public class Player2 : MonoBehaviour {
 
     void OnCollisionStay()
     {
+        //if on ground, set is falling to false allowing a jump
         isFalling = false;
     }
 
+    //Method that changes the players health. Called by the Gameobjects/Scripts that damage the player
     void TakeDamage(float damage)
     {
+        //Take the passed damage from the health
         healthAmount -= damage;
 
+        //If statement for adding health with health packs, preventing it form being over the maximum value
         if (healthAmount > 1)
         {
             healthAmount = 1;
         }
-
+        //Assign the size of the health bar to the amount of health the player has
         healthBar.transform.localScale = new Vector3(healthAmount, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
-
+        //If the health amount is 0 or less restart level
         if (healthAmount <= 0)
         {
             Application.LoadLevel(Application.loadedLevel);
         }
     }
 
+    //Checks if the player is against an object and which side it is on
     void CheckIfAgainstObject()
     {
         if (againstObject == true)
         {
-            //Debug.Log("Is against an object");
-
+            //If the player is facing left
             if (transform.rotation.eulerAngles.y >= 89 && transform.rotation.eulerAngles.y <= 91)
             {
+                //stop it being able to move left
                 canMoveLeft = false;
-                //Debug.Log("can move left changed");
             }
             else
             {
+                //stop it being able to move right
                 canMoveRight = false;
-                // Debug.Log("can move right changed");
             }
         }
         else
         {
+            //reset values
             canMoveLeft = true;
             canMoveRight = true;
         }
